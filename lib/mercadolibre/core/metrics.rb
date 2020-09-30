@@ -27,7 +27,7 @@ module Mercadolibre
 
       def get_items_visits(item_ids, args={})
         item_ids_desc = (item_ids.is_a?(Array) ? item_ids.join(',') : item_ids)
-        get_request("/items/visits", args.merge(ids: item_ids_desc)).body
+        get_request("/visits/items", args.merge(ids: item_ids_desc)).body
       end
 
       def get_item_visits_tw(item_id, args={})
