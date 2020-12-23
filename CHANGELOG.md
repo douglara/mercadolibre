@@ -361,3 +361,31 @@
 ## v4.9.0
 
 * Bugfixes on endpoint for mercadoshops
+
+## v4.10.0
+
+* Fixes on mercadoshops
+
+## v4.11.0
+
+* Changed param for create message attachment
+
+## v4.12.0
+
+* Added method to create messaging to packs
+
+## v4.13.0
+
+* Added free shipping cost method
+
+## v4.14.0
+
+* Added method to get catalog elegibility
+
+## v4.15.0
+
+* Fix on method to mark order message as read
+
+## v4.16.0
+
+* Fix on method to search unread messages
