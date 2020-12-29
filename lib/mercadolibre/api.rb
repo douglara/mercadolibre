@@ -8,13 +8,13 @@ module Mercadolibre
       @callback_url = args[:callback_url]
       @access_token = args[:access_token]
 
-      if args[:endpoint_url].present?
+      if args.key?(:endpoint_url)
         @endpoint_url = args[:endpoint_url]
       else
         @endpoint_url = 'https://api.mercadolibre.com'
       end
 
-      if args[:auth_url].present?
+      if args.key?(:auth_url)
         @auth_url = args[:auth_url]
       else
         @auth_url = 'https://auth.mercadolibre.com.ar'
