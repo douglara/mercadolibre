@@ -21,6 +21,11 @@ module Mercadolibre
       end
 
       @site = args[:site]
+
+      args.key?(:retry_timeouts_delay) ? @retry_timeouts_delay = args[:retry_timeouts_delay] : @retry_timeouts_delay = 15
+      args.key?(:retry_timeouts_limit) ? @retry_timeouts_limit = args[:retry_timeouts_limit] : @retry_timeouts_limit = 5
+      args.key?(:retry_timeouts) ? @retry_timeouts = args[:retry_timeouts] : @retry_timeouts = false
+      args.key?(:parse_response) ? @parse_response = args[:parse_response] : @parse_response = true
     end
 
     include Mercadolibre::Core::Apps
@@ -61,77 +66,128 @@ module Mercadolibre
 
     def get_request(action, params={}, headers={})
       begin
+        retries ||= 0
         api_response_kind = headers.delete('api_response_kind')
         api_response_kind = headers.delete(:api_response_kind) if api_response_kind.nil?
         api_response_kind = 'object' if api_response_kind.nil?
 
         parse_response(api_response_kind, RestClient.get("#{@endpoint_url}#{action}", {params: params}.merge(headers)))
-      rescue => e
+      rescue RestClient::ExceptionWithResponse, RestClient::TooManyRequests => e
+        if (@retry_timeouts == true)
+          sleep(@retry_timeouts_delay)
+          retry if (retries += 1) < @retry_timeouts_limit
+        end
+        parse_response('object', e.response)
+      rescue Exception => e
         parse_response('object', e.response)
       end
     end
 
     def post_request(action, params={}, headers={})
       begin
+        retries ||= 0
         api_response_kind = headers.delete('api_response_kind')
         api_response_kind = headers.delete(:api_response_kind) if api_response_kind.nil?
         api_response_kind = 'object' if api_response_kind.nil?
 
         parse_response(api_response_kind, RestClient.post("#{@endpoint_url}#{action}", params, headers))
-      rescue => e
+      rescue RestClient::ExceptionWithResponse, RestClient::TooManyRequests => e
+        if (@retry_timeouts == true)
+          sleep(@retry_timeouts_delay)
+          retry if (retries += 1) < @retry_timeouts_limit
+        end
+        parse_response('object', e.response)
+      rescue Exception => e 
         parse_response('object', e.response)
       end
     end
 
     def put_request(action, params={}, headers={})
       begin
+        retries ||= 0
         api_response_kind = headers.delete('api_response_kind')
         api_response_kind = headers.delete(:api_response_kind) if api_response_kind.nil?
         api_response_kind = 'object' if api_response_kind.nil?
 
         parse_response(api_response_kind, RestClient.put("#{@endpoint_url}#{action}", params, headers))
-      rescue => e
+      rescue RestClient::ExceptionWithResponse, RestClient::TooManyRequests => e
+        if (@retry_timeouts == true)
+          sleep(@retry_timeouts_delay)
+          retry if (retries += 1) < @retry_timeouts_limit
+        end
+        parse_response('object', e.response)
+      rescue Exception => e 
         parse_response('object', e.response)
       end
     end
 
     def patch_request(action, params={}, headers={})
       begin
+        retries ||= 0
         api_response_kind = headers.delete('api_response_kind')
         api_response_kind = headers.delete(:api_response_kind) if api_response_kind.nil?
         api_response_kind = 'object' if api_response_kind.nil?
 
         parse_response(api_response_kind, RestClient.patch("#{@endpoint_url}#{action}", params, headers))
-      rescue => e
+      rescue RestClient::ExceptionWithResponse, RestClient::TooManyRequests => e
+        if (@retry_timeouts == true)
+          sleep(@retry_timeouts_delay)
+          retry if (retries += 1) < @retry_timeouts_limit
+        end
+        parse_response('object', e.response)
+      rescue Exception => e 
         parse_response('object', e.response)
       end
     end
 
     def head_request(action, params={}, headers={})
       begin
+        retries ||= 0
         api_response_kind = headers.delete('api_response_kind')
         api_response_kind = headers.delete(:api_response_kind) if api_response_kind.nil?
         api_response_kind = 'object' if api_response_kind.nil?
 
         parse_response(api_response_kind, RestClient.head("#{@endpoint_url}#{action}", params))
-      rescue => e
+      rescue RestClient::ExceptionWithResponse, RestClient::TooManyRequests => e
+        if (@retry_timeouts == true)
+          sleep(@retry_timeouts_delay)
+          retry if (retries += 1) < @retry_timeouts_limit
+        end
+        parse_response('object', e.response)
+      rescue Exception => e 
         parse_response('object', e.response)
       end
     end
 
     def delete_request(action, params={}, headers={})
       begin
+        retries ||= 0
         api_response_kind = headers.delete('api_response_kind')
         api_response_kind = headers.delete(:api_response_kind) if api_response_kind.nil?
         api_response_kind = 'object' if api_response_kind.nil?
 
         parse_response(api_response_kind, RestClient.delete("#{@endpoint_url}#{action}", params))
-      rescue => e
+      rescue RestClient::ExceptionWithResponse, RestClient::TooManyRequests => e
+        if (@retry_timeouts == true)
+          sleep(@retry_timeouts_delay)
+          retry if (retries += 1) < @retry_timeouts_limit
+        end
+        parse_response('object', e.response)
+      rescue Exception => e 
         parse_response('object', e.response)
       end
     end
 
     def parse_response(api_response_kind, response)
+      if (@parse_response == false)
+        return { 
+          ok: { 
+            response: response, 
+            body: (JSON.parse(response.body) rescue response.body),
+            status_code: response.code
+          }}
+      end
+
       @last_response = response
 
       result = OpenStruct.new
