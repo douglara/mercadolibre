@@ -72,8 +72,10 @@ module Mercadolibre
         api_response_kind = 'object' if api_response_kind.nil?
 
         parse_response(api_response_kind, RestClient.get("#{@endpoint_url}#{action}", {params: params}.merge(headers)))
+      rescue RestClient::Exceptions::Timeout => e
+        parse_response('object', e.response)
       rescue RestClient::ExceptionWithResponse, RestClient::TooManyRequests => e
-        if (@retry_timeouts == true)
+        if (@retry_timeouts == true && e.response.code != 401)
           sleep(@retry_timeouts_delay)
           retry if (retries += 1) < @retry_timeouts_limit
         end
@@ -183,25 +185,25 @@ module Mercadolibre
         return { 
           ok: { 
             response: response, 
-            body: (JSON.parse(response.body) rescue response.body),
-            status_code: response.code
+            body: (JSON.parse(response.body) rescue response&.body),
+            status_code: (response.code rescue response&.code )
           }}
       end
 
       @last_response = response
 
       result = OpenStruct.new
-      result.status_code = response.code
+      result.status_code = response&.code
 
       if api_response_kind == 'object'
-        result.headers = (JSON.parse(response.headers.to_json, object_class: OpenStruct) rescue response.headers)
-        result.body = (JSON.parse(response.body, object_class: OpenStruct) rescue response.body)
+        result.headers = (JSON.parse(response.headers.to_json, object_class: OpenStruct) rescue response&.headers)
+        result.body = (JSON.parse(response.body, object_class: OpenStruct) rescue response&.body)
       elsif api_response_kind == 'hash'
         result.headers = response.headers
-        result.body = (JSON.parse(response.body) rescue response.body)
+        result.body = (JSON.parse(response.body) rescue response&.body)
       else
-        result.headers = response.headers
-        result.body = response.body
+        result.headers = response&.headers
+        result.body = response&.body
       end
 
       @last_result = result
