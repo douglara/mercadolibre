@@ -25,7 +25,7 @@ module Mercadolibre
       args.key?(:retry_timeouts_delay) ? @retry_timeouts_delay = args[:retry_timeouts_delay] : @retry_timeouts_delay = 15
       args.key?(:retry_timeouts_limit) ? @retry_timeouts_limit = args[:retry_timeouts_limit] : @retry_timeouts_limit = 5
       args.key?(:retry_timeouts) ? @retry_timeouts = args[:retry_timeouts] : @retry_timeouts = false
-      args.key?(:parse_response) ? @parse_response = args[:parse_response] : @parse_response = true
+      args.key?(:default_parse_response) ? @default_parse_response = args[:default_parse_response] : @default_parse_response = true
     end
 
     include Mercadolibre::Core::Apps
@@ -181,7 +181,7 @@ module Mercadolibre
     end
 
     def parse_response(api_response_kind, response)
-      if (@parse_response == false)
+      if (@default_parse_response == false)
         return { 
           ok: { 
             response: response, 

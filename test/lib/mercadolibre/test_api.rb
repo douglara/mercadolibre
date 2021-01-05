@@ -14,7 +14,17 @@ describe Mercadolibre::Api do
     end
   end
 
-  describe 'parse_response' do
+  describe 'put_request' do
+    it 'valid request' do
+      subject = Mercadolibre::Api.new({default_parse_response: false})
+      stub_request(:put, "https://api.mercadolibre.com/items/MLB1020719324").
+      to_return(status: 200, body: '{"id": "MLB1020719324"}', headers: {})
+      result = subject.send(:put_request, '/items/MLB1020719324', {'price' => 600.00})
+      result.key?(:ok)
+    end
+  end
+
+  describe 'default_parse_response' do
     it 'enable' do
       stub_request(:get, "https://api.mercadolibre.com/items/MLB1192787768").
       to_return(status: 200, body: '{"id": "MLB1192787768"}', headers: {})
@@ -23,7 +33,7 @@ describe Mercadolibre::Api do
     end
 
     it 'disable' do
-      subject = Mercadolibre::Api.new({parse_response: false})
+      subject = Mercadolibre::Api.new({default_parse_response: false})
       stub_request(:get, "https://api.mercadolibre.com/items/MLB1192787768").
       to_return(status: 200, body: '{"id": "MLB1192787768"}', headers: {})
       result = subject.send(:get_request, '/items/MLB1192787768')
@@ -33,7 +43,7 @@ describe Mercadolibre::Api do
 
   describe 'retry_timeouts' do
     describe 'enable' do
-      subject = Mercadolibre::Api.new({retry_timeouts: true, retry_timeouts_delay: 0, parse_response: false})
+      subject = Mercadolibre::Api.new({retry_timeouts: true, retry_timeouts_delay: 0, default_parse_response: false})
 
       it 'many requests' do
         stub_request(:get, "https://api.mercadolibre.com/items/MLB1192787768").
@@ -49,13 +59,13 @@ describe Mercadolibre::Api do
       end
 
       describe 'timeout' do
-        it 'parse_response enable' do
+        it 'default_parse_response enable' do
           stub_request(:get, "https://api.mercadolibre.com/items/MLB1192787768").to_timeout
   
           subject.send(:get_request, '/items/MLB1192787768')[:ok][:status_code] == nil            
         end
 
-        it 'parse_response disable' do
+        it 'default_parse_response disable' do
           new_subject = Mercadolibre::Api.new({retry_timeouts: true, retry_timeouts_delay: 0})
           stub_request(:get, "https://api.mercadolibre.com/items/MLB1192787768").to_timeout
   
@@ -65,7 +75,7 @@ describe Mercadolibre::Api do
     end
 
     it 'disable' do
-      subject = Mercadolibre::Api.new({parse_response: false})
+      subject = Mercadolibre::Api.new({default_parse_response: false})
       stub_request(:get, "https://api.mercadolibre.com/items/MLB1192787768").
       to_return({status: 429, body: 'too_many_requests'}, {status: 200, body: '{"id": "MLB1192787768"}'})
       subject.send(:get_request, '/items/MLB1192787768')[:ok][:status_code] == 429

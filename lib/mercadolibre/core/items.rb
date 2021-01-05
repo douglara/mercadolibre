@@ -6,15 +6,18 @@ module Mercadolibre
 
         headers = { content_type: :json }
 
-        post_request("/items?access_token=#{@access_token}", payload, headers).body
+        result = post_request("/items?access_token=#{@access_token}", payload, headers)
+        @default_parse_response == true ? result.body : result
       end
 
       def get_item(item_id, attrs={})
-        get_request("/items/#{item_id}", attrs.merge({ access_token: @access_token })).body
+        result = get_request("/items/#{item_id}", attrs.merge({ access_token: @access_token }))
+        @default_parse_response == true ? result.body : result
       end
 
       def get_items(item_ids, attrs={})
-        get_request("/items", attrs.merge({ids: item_ids.uniq.join(','), access_token: @access_token})).body
+        result = get_request("/items", attrs.merge({ids: item_ids.uniq.join(','), access_token: @access_token}))
+        @default_parse_response == true ? result.body : result
       end
 
       def update_item(item_id, attrs)
@@ -22,7 +25,8 @@ module Mercadolibre
 
         headers = { content_type: :json, accept: :json }
 
-        put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers).body
+        result = put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers)
+        @default_parse_response == true ? result.body : result
       end
 
       def validate_item(attrs)
@@ -36,7 +40,8 @@ module Mercadolibre
       end
 
       def get_item_available_upgrades(item_id)
-        get_request("/items/#{item_id}/available_upgrades?access_token=@access_token").body
+        result = get_request("/items/#{item_id}/available_upgrades?access_token=#{@access_token}")
+        @default_parse_response == true ? result.body : result
       end
 
       def relist_item(item_id, attrs)
@@ -44,11 +49,13 @@ module Mercadolibre
 
         headers = { content_type: :json, accept: :json }
 
-        post_request("/items/#{item_id}/relist?access_token=#{@access_token}", payload, headers).body
+        result = post_request("/items/#{item_id}/relist?access_token=#{@access_token}", payload, headers)
+        @default_parse_response == true ? result.body : result
       end
 
       def get_item_description(item_id)
-        get_request("/items/#{item_id}/description").body
+        result = get_request("/items/#{item_id}/description")
+        @default_parse_response == true ? result.body : result
       end
 
       def update_item_description(item_id, text)
@@ -56,7 +63,8 @@ module Mercadolibre
 
         headers = { content_type: :json, accept: :json }
 
-        put_request("/items/#{item_id}/description?access_token=#{@access_token}", payload, headers).body
+        result = put_request("/items/#{item_id}/description?access_token=#{@access_token}", payload, headers)
+        @default_parse_response == true ? result.body : result
       end
 
       def update_item_attributes(item_id, attrs)
@@ -64,7 +72,8 @@ module Mercadolibre
 
         headers = { content_type: :json, accept: :json }
 
-        put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers).status_code == 200
+        result = put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers)
+        @default_parse_response == true ? result.status_code == 200 : result
       end
 
       def delete_item_attributes(item_id, attr_list)
@@ -72,11 +81,13 @@ module Mercadolibre
 
         headers = { content_type: :json, accept: :json }
 
-        put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers).status_code == 200
+        result = put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers)
+        @default_parse_response == true ? result.status_code == 200 : result
       end
 
       def get_item_identifiers(item_id)
-        get_request("/items/#{item_id}/product_identifiers").body
+        result = get_request("/items/#{item_id}/product_identifiers")
+        @default_parse_response == true ? result.body == 200 : result
       end
 
       def update_item_identifiers(item_id, attrs)
@@ -84,7 +95,8 @@ module Mercadolibre
 
         headers = { content_type: :json }
 
-        put_request("/items/#{item_id}/product_identifiers?access_token=#{@access_token}", payload, headers).status_code == 200
+        result = put_request("/items/#{item_id}/product_identifiers?access_token=#{@access_token}", payload, headers)
+        @default_parse_response == true ? result.status_code == 200 : result
       end
     end
   end
