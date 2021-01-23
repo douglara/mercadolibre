@@ -12,7 +12,7 @@ module Mercadolibre
 
       def get_item(item_id, attrs={})
         request = get_request("/items/#{item_id}", attrs.merge({ access_token: @access_token }))
-        response = @last_response && @last_response&.code == 200 ? {ok: request} : {error: request}
+        response = @last_response && @last_response&.code == 200 ? {ok: @last_body} : {error: @last_body}
         @default_parse_response == true ? request.body : response
       end
 
@@ -27,7 +27,7 @@ module Mercadolibre
         headers = { content_type: :json, accept: :json }
 
         request = put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers)
-        response = @last_response && @last_response&.code == 200 ? {ok: request} : {error: request}
+        response = @last_response && @last_response&.code == 200 ? {ok: @last_body} : {error: @last_body}
         @default_parse_response == true ? request.body : response
       end
 

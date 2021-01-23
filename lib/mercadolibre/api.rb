@@ -182,6 +182,7 @@ module Mercadolibre
 
     def parse_response(api_response_kind, response)
       @last_response = response
+      @last_body = (JSON.parse(response.body) rescue response&.body)
 
       result = OpenStruct.new
       result.status_code = response&.code
@@ -202,7 +203,7 @@ module Mercadolibre
       if (@default_parse_response == false)
         return { 
           response: response, 
-          body: (JSON.parse(response.body) rescue response&.body),
+          body: @last_body,
           status_code: (response.code rescue response&.code )
         }
       else
