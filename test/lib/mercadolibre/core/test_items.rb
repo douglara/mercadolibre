@@ -6,13 +6,44 @@ describe Mercadolibre::Core::Items do
     subject ||= Mercadolibre::Api.new({default_parse_response: false})
   end
 
+  def subject_auth
+    subject_auth ||= Mercadolibre::Api.new({
+      app_key: ENV['APP_KEY'],
+      app_secret: ENV['APP_SECRET'],
+      callback_url: ENV['CALLBACK_URL'],
+      site: ENV['SITE'],
+      auth_url: ENV['AUTH_URL'],
+      access_token: ENV['ACCESS_TOKEN'],
+      default_parse_response: false
+      })
+  end
+
+
   describe 'update_item' do
     it 'valid item' do
-      stub_request(:put, "https://api.mercadolibre.com/items/MLB1020719324?access_token=").
-      to_return(status: 200, body: '{"id": "MLB1020719324"}', headers: {})
-      result = subject.update_item('MLB1020719324', {'price' => 600.00})
-      result.key?(:ok)
-      result[:ok][:status_code] == 200
+      VCR.use_cassette('mercadolibre/core/items/update_item/valid item') do
+        assert_equal(subject_auth.update_item('MLB1775469478', {'price' => 600.00}).key?(:ok) , true)
+      end
+    end
+
+    it 'invalid item' do
+      VCR.use_cassette('mercadolibre/core/items/update_item/invalid item') do
+        assert_equal(subject_auth.update_item('MLB1020719324', {'price' => 600.00}).key?(:error) , true)
+      end
+    end
+  end
+
+  describe 'get_item', :vcr do
+    it 'valid item' do
+      VCR.use_cassette('mercadolibre/core/items/get_item/valid item') do
+        assert_equal(subject.get_item('MLB1020719324').key?(:ok) , true)
+      end
+    end
+
+    it 'not found item' do
+      VCR.use_cassette('mercadolibre/core/items/get_item/not found item') do
+        assert_equal(subject.get_item('MLB102071932').key?(:error) , true)
+      end
     end
   end
 end

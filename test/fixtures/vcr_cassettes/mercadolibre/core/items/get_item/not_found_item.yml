@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.mercadolibre.com/items/MLB102071932?access_token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '93'
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 23 Jan 2021 06:21:58 GMT
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - 2ea5d647-c27e-4b0e-9f2a-5e5e5e53d362
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 2c30cbb218d3751f3841d8bb549d4857.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-C1
+      X-Amz-Cf-Id:
+      - hE3T_HlLjLxXG0QoXOI-86dwd1nBW7TtRZf5l9zn0or9lWmS981mXA==
+    body:
+      encoding: UTF-8
+      string: '{"message":"Item with id MLB102071932 not found","error":"not_found","status":404,"cause":[]}'
+  recorded_at: Sat, 23 Jan 2021 06:21:58 GMT
+recorded_with: VCR 6.0.0

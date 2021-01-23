@@ -11,8 +11,9 @@ module Mercadolibre
       end
 
       def get_item(item_id, attrs={})
-        result = get_request("/items/#{item_id}", attrs.merge({ access_token: @access_token }))
-        @default_parse_response == true ? result.body : result
+        request = get_request("/items/#{item_id}", attrs.merge({ access_token: @access_token }))
+        response = @last_response && @last_response&.code == 200 ? {ok: request} : {error: request}
+        @default_parse_response == true ? request.body : response
       end
 
       def get_items(item_ids, attrs={})
@@ -25,8 +26,9 @@ module Mercadolibre
 
         headers = { content_type: :json, accept: :json }
 
-        result = put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers)
-        @default_parse_response == true ? result.body : result
+        request = put_request("/items/#{item_id}?access_token=#{@access_token}", payload, headers)
+        response = @last_response && @last_response&.code == 200 ? {ok: request} : {error: request}
+        @default_parse_response == true ? request.body : response
       end
 
       def validate_item(attrs)

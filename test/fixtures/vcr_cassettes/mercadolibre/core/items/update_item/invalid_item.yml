@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.mercadolibre.com/items/<SITE>1020719324?access_token=<ACCESS_TOKEN>
+    body:
+      encoding: UTF-8
+      string: '{"price":600.0}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '15'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 23 Jan 2021 06:53:16 GMT
+      X-Api-Name:
+      - syi-api
+      X-Api-Version:
+      - '1.00'
+      Vary:
+      - Accept,Accept-Encoding,Accept-Encoding
+      Cache-Control:
+      - max-age=0
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - 4f723f5e-25b6-4130-bcc4-2c1a8a2c86a0
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 2b11627cc37f6d5514f6ba11e7fc6034.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - ZWxqriEW7YQZirYLPQ3ub07q5tI_e7EEd11L_SniifJJAOiYC3RX2g==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"message":"Cannot update item <SITE>1020719324 [status:closed, has_bids:false]","error":"validation_error","status":400,"cause":[{"department":"items","cause_id":339,"type":"error","code":"item.price.not_modifiable","references":["price"],"message":"price
+        is not modifiable."}]}'
+  recorded_at: Sat, 23 Jan 2021 06:53:16 GMT
+recorded_with: VCR 6.0.0
