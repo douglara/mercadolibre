@@ -46,4 +46,12 @@ describe Mercadolibre::Core::Items do
       end
     end
   end
+
+  describe '#update_item_description', :vcr do
+    it 'valid item' do
+      VCR.use_cassette('mercadolibre/core/items/update_item_description/valid item') do
+        assert_equal(subject_auth.update_item_description('MLB1788182235', 'test')[:status_code] , 200)
+      end
+    end
+  end
 end

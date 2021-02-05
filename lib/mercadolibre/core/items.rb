@@ -61,7 +61,7 @@ module Mercadolibre
       end
 
       def update_item_description(item_id, text)
-        payload = { text: text }.to_json
+        payload = { plain_text: text }.to_json
 
         headers = { content_type: :json, accept: :json }
 

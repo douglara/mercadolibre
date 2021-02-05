@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.mercadolibre.com/items/<SITE>1788182235/description?access_token=<ACCESS_TOKEN>
+    body:
+      encoding: UTF-8
+      string: '{"plain_text":"test"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <ACCESS_TOKEN>
+      Content-Length:
+      - '21'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 04 Feb 2021 23:58:02 GMT
+      X-Api-Name:
+      - syi-api
+      X-Api-Version:
+      - '1.00'
+      Vary:
+      - Accept,Accept-Encoding,Accept-Encoding
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - ce25eab5ba73c02691d39ecfe5c8b197
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - 95549fea-1579-402f-9298-141011b43aa3
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 835d1c1d81ba35749872b5d5db02b4e1.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-C1
+      X-Amz-Cf-Id:
+      - KmPgzKWAOrhJnKn18HaHXvTZTBGcsm9klI-dlZZ3GSVmzDfGYXTnYw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"text":null,"plain_text":"test","last_updated":"2021-02-04T23:58:02.179Z","date_created":"2021-02-04T23:56:28.000Z"}'
+  recorded_at: Thu, 04 Feb 2021 23:58:02 GMT
+recorded_with: VCR 6.0.0
