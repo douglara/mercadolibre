@@ -6,8 +6,10 @@ module Mercadolibre
 
         headers = { content_type: :json }
 
-        result = post_request("/items?access_token=#{@access_token}", payload, headers)
-        @default_parse_response == true ? result.body : result
+        request = post_request("/items", payload, headers)
+        response = @last_response && @last_body.key?('id') ? {ok: @last_body} : {error: @last_body}
+
+        @default_parse_response == true ? request.body : response
       end
 
       def get_item(item_id, attrs={})

@@ -54,4 +54,12 @@ describe Mercadolibre::Core::Items do
       end
     end
   end
+
+  describe '#create_item', :vcr do
+    it 'invalid item' do
+      VCR.use_cassette('mercadolibre/core/items/create_item/invalid item') do
+        assert_equal(subject_auth.create_item({'title': 'test', 'price': 100}).key?(:error) , true)
+      end
+    end    
+  end
 end

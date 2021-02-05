@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.mercadolibre.com/items
+    body:
+      encoding: UTF-8
+      string: '{"title":"test","price":100}'
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <ACCESS_TOKEN>
+      Content-Length:
+      - '28'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 04 Feb 2021 23:40:02 GMT
+      X-Api-Name:
+      - syi-api
+      X-Api-Version:
+      - '1.00'
+      Vary:
+      - Accept,Accept-Encoding,Accept-Encoding
+      Cache-Control:
+      - max-age=0
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - 6aa095b6-a692-4cce-a6de-ade199ca1655
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 5013aa2969ca99b3a9a086e23ddf216a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU1-C2
+      X-Amz-Cf-Id:
+      - erclAkfrDNWjzQMu0Ocu3qBssh6YqXy5C37XIsHfjqVPnFThQdLXxw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"message":"body.required_fields","error":"validation_error","status":400,"cause":[{"department":"items","cause_id":369,"type":"error","code":"body.required_fields","references":["body"],"message":"The
+        body does not contains some or none of the following properties [listing_type_id,
+        category_id]"}]}'
+  recorded_at: Thu, 04 Feb 2021 23:40:03 GMT
+recorded_with: VCR 6.0.0
