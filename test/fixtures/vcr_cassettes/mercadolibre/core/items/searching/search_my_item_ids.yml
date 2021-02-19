@@ -1,0 +1,137 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.mercadolibre.com/users/me
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Authorization:
+      - Bearer <ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Fri, 19 Feb 2021 01:48:48 GMT
+      Cache-Control:
+      - max-age=60,stale-while-revalidate=30, stale-if-error=120
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - ee771fd1-8933-470b-afcb-2c9d45823712
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 20258a2b3c6766e357360ce1a55204c9.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-C2
+      X-Amz-Cf-Id:
+      - vhdWVma6dsFW1APhhFb4bxQ2kqN2T5c4ahPmmIevy2cdyb0Zy6rb0A==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6MTEwNjY2NDkyLCJuaWNrbmFtZSI6IkRPVUxBUkEyMDEyIiwicmVnaXN0cmF0aW9uX2RhdGUiOiIyMDEyLTA0LTI2VDEzOjU4OjI0LjAwMC0wNDowMCIsImZpcnN0X25hbWUiOiJEb3VnbGFzIiwibGFzdF9uYW1lIjoiTGFyYSIsImdlbmRlciI6IiIsImNvdW50cnlfaWQiOiJCUiIsImVtYWlsIjoiZG91Z2xhc19sYXJhQG1lLmNvbSIsImlkZW50aWZpY2F0aW9uIjp7Im51bWJlciI6IjA5MDM4NjEzOTk3IiwidHlwZSI6IkNQRiJ9LCJpbnRlcm5hbF90YWdzIjpbImNhY19tZTJfZHJvcF9vZmYiLCJkZXZlbG9wZXIiXSwiYWRkcmVzcyI6eyJhZGRyZXNzIjoiUnVhIE1hcmlhbHZhIDcwIiwiY2l0eSI6IkN1cml0aWJhIiwic3RhdGUiOiJCUi1QUiIsInppcF9jb2RlIjoiODE5MDA1MDAifSwicGhvbmUiOnsiYXJlYV9jb2RlIjpudWxsLCJleHRlbnNpb24iOiIiLCJudW1iZXIiOiI0MTk5NjkxMDI1NiIsInZlcmlmaWVkIjpmYWxzZX0sImFsdGVybmF0aXZlX3Bob25lIjp7ImFyZWFfY29kZSI6IiIsImV4dGVuc2lvbiI6IiIsIm51bWJlciI6IiJ9LCJ1c2VyX3R5cGUiOiJub3JtYWwiLCJ0YWdzIjpbIm5vcm1hbCIsIm1lc3NhZ2VzX2FzX3NlbGxlciIsIm1lc3NhZ2VzX2FzX2J1eWVyIl0sImxvZ28iOm51bGwsInBvaW50cyI6MTA0LCJzaXRlX2lkIjoiPFNJVEU+IiwicGVybWFsaW5rIjoiaHR0cDovL3BlcmZpbC5tZXJjYWRvbGl2cmUuY29tLmJyL0RPVUxBUkEyMDEyIiwic2hpcHBpbmdfbW9kZXMiOlsiY3VzdG9tIiwibm90X3NwZWNpZmllZCIsIm1lMiJdLCJzZWxsZXJfZXhwZXJpZW5jZSI6IkFEVkFOQ0VEIiwiYmlsbF9kYXRhIjp7ImFjY2VwdF9jcmVkaXRfbm90ZSI6bnVsbH0sInNlbGxlcl9yZXB1dGF0aW9uIjp7ImxldmVsX2lkIjpudWxsLCJwb3dlcl9zZWxsZXJfc3RhdHVzIjpudWxsLCJ0cmFuc2FjdGlvbnMiOnsiY2FuY2VsZWQiOjMsImNvbXBsZXRlZCI6NCwicGVyaW9kIjoiaGlzdG9yaWMiLCJyYXRpbmdzIjp7Im5lZ2F0aXZlIjowLCJuZXV0cmFsIjowLCJwb3NpdGl2ZSI6MX0sInRvdGFsIjo3fSwibWV0cmljcyI6eyJzYWxlcyI6eyJwZXJpb2QiOiIzNjUgZGF5cyIsImNvbXBsZXRlZCI6NH0sImNsYWltcyI6eyJwZXJpb2QiOiIzNjUgZGF5cyIsInJhdGUiOjAsInZhbHVlIjowfSwiZGVsYXllZF9oYW5kbGluZ190aW1lIjp7InBlcmlvZCI6IjM2NSBkYXlzIiwicmF0ZSI6MCwidmFsdWUiOjB9LCJjYW5jZWxsYXRpb25zIjp7InBlcmlvZCI6IjM2NSBkYXlzIiwicmF0ZSI6MCwidmFsdWUiOjJ9fX0sImJ1eWVyX3JlcHV0YXRpb24iOnsiY2FuY2VsZWRfdHJhbnNhY3Rpb25zIjowLCJ0YWdzIjpbXSwidHJhbnNhY3Rpb25zIjp7ImNhbmNlbGVkIjp7InBhaWQiOm51bGwsInRvdGFsIjpudWxsfSwiY29tcGxldGVkIjpudWxsLCJub3RfeWV0X3JhdGVkIjp7InBhaWQiOm51bGwsInRvdGFsIjpudWxsLCJ1bml0cyI6bnVsbH0sInBlcmlvZCI6Imhpc3RvcmljIiwidG90YWwiOm51bGwsInVucmF0ZWQiOnsicGFpZCI6bnVsbCwidG90YWwiOm51bGx9fX0sInN0YXR1cyI6eyJiaWxsaW5nIjp7ImFsbG93Ijp0cnVlLCJjb2RlcyI6W119LCJidXkiOnsiYWxsb3ciOnRydWUsImNvZGVzIjpbXSwiaW1tZWRpYXRlX3BheW1lbnQiOnsicmVhc29ucyI6W10sInJlcXVpcmVkIjpmYWxzZX19LCJjb25maXJtZWRfZW1haWwiOnRydWUsInNob3BwaW5nX2NhcnQiOnsiYnV5IjoiYWxsb3dlZCIsInNlbGwiOiJhbGxvd2VkIn0sImltbWVkaWF0ZV9wYXltZW50IjpmYWxzZSwibGlzdCI6eyJhbGxvdyI6dHJ1ZSwiY29kZXMiOltdLCJpbW1lZGlhdGVfcGF5bWVudCI6eyJyZWFzb25zIjpbXSwicmVxdWlyZWQiOmZhbHNlfX0sIm1lcmNhZG9lbnZpb3MiOiJub3RfYWNjZXB0ZWQiLCJtZXJjYWRvcGFnb19hY2NvdW50X3R5cGUiOiJwZXJzb25hbCIsIm1lcmNhZG9wYWdvX3RjX2FjY2VwdGVkIjp0cnVlLCJyZXF1aXJlZF9hY3Rpb24iOm51bGwsInNlbGwiOnsiYWxsb3ciOnRydWUsImNvZGVzIjpbXSwiaW1tZWRpYXRlX3BheW1lbnQiOnsicmVhc29ucyI6W10sInJlcXVpcmVkIjpmYWxzZX19LCJzaXRlX3N0YXR1cyI6ImFjdGl2ZSIsInVzZXJfdHlwZSI6ImNvbXBsZXRlX3JlZ2lzdHJhdGlvbiJ9LCJzZWN1cmVfZW1haWwiOiJkbGFyYS4zdG55ZDFAbWFpbC5tZXJjYWRvbGl2cmUuY29tIiwiY29tcGFueSI6eyJicmFuZF9uYW1lIjoiTWVsaSBBbsO6bmNpb3MiLCJjaXR5X3RheF9pZCI6IiIsImNvcnBvcmF0ZV9uYW1lIjoidGVzdGVlIiwiaWRlbnRpZmljYXRpb24iOiIwOTAzODYxMzk5NyIsInN0YXRlX3RheF9pZCI6IiIsImN1c3RfdHlwZV9pZCI6IkNPIiwic29mdF9kZXNjcmlwdG9yIjoiTUVMSUFOVU5DSU9TIn0sImNyZWRpdCI6eyJjb25zdW1lZCI6MCwiY3JlZGl0X2xldmVsX2lkIjoiPFNJVEU+MyIsInJhbmsiOiJwYXllciJ9LCJjb250ZXh0Ijp7fSwicmVnaXN0cmF0aW9uX2lkZW50aWZpZXJzIjpbXX0=
+  recorded_at: Fri, 19 Feb 2021 01:48:48 GMT
+- request:
+    method: get
+    uri: https://api.mercadolibre.com/users/110666492/items/search?limit=50&offset=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Authorization:
+      - Bearer <ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Fri, 19 Feb 2021 01:48:48 GMT
+      Vary:
+      - Accept,Accept-Encoding
+      Cache-Control:
+      - max-age=0
+      Etag:
+      - da5e8bb2c0a6d5d96e604377a92a6bc4
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - 07166af7-fa4c-4bbb-959e-fe8392f3459d
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Access-Control-Max-Age:
+      - '86400'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 f5e7a2de6db3068f03311f68644881cb.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-C2
+      X-Amz-Cf-Id:
+      - yKK_xBygLbArrVBcLzKhcgXRW-bQ3zXM0QLSf5kKNqkb3HyV_K3WGA==
+    body:
+      encoding: UTF-8
+      string: '{"seller_id":"110666492","query":null,"paging":{"limit":50,"offset":0,"total":1131},"results":["<SITE>1639853468","<SITE>1643070023","<SITE>1645556000","<SITE>1650693231","<SITE>1651845055","<SITE>1651859015","<SITE>1654949652","<SITE>1655000716","<SITE>1657887413","<SITE>1657924277","<SITE>1645444041","<SITE>1692529638","<SITE>1742860911","<SITE>1742860942","<SITE>1742854493","<SITE>1742914550","<SITE>1742914559","<SITE>1742918558","<SITE>1020902119","<SITE>1020900358","<SITE>1020899267","<SITE>1020719641","<SITE>1020719324","<SITE>1762856939","<SITE>1762861884","<SITE>1774425693","<SITE>1781784929","<SITE>1781850091","<SITE>1781850048","<SITE>1781850133","<SITE>1781850111","<SITE>1796196847","<SITE>1796203960","<SITE>857730887","<SITE>857734025","<SITE>857730893","<SITE>857730894","<SITE>857730895","<SITE>857734410","<SITE>903371818","<SITE>903371842","<SITE>903378189","<SITE>903381056","<SITE>903376444","<SITE>903379292","<SITE>903376563","<SITE>903384613","<SITE>903379435","<SITE>906941814","<SITE>906939617"],"orders":[{"id":"stop_time_asc","name":"Order
+        by stop time ascending"}],"available_orders":[{"id":"stop_time_asc","name":"Order
+        by stop time ascending"},{"id":"stop_time_desc","name":"Order by stop time
+        descending"},{"id":"start_time_asc","name":"Order by start time ascending"},{"id":"start_time_desc","name":"Order
+        by start time descending"},{"id":"available_quantity_asc","name":"Order by
+        available quantity ascending"},{"id":"available_quantity_desc","name":"Order
+        by available quantity descending"},{"id":"sold_quantity_asc","name":"Order
+        by sold quantity ascending"},{"id":"sold_quantity_desc","name":"Order by sold
+        quantity descending"},{"id":"price_asc","name":"Order by price ascending"},{"id":"price_desc","name":"Order
+        by price descending"},{"id":"last_updated_desc","name":"Order by lastUpdated
+        descending"},{"id":"last_updated_asc","name":"Order by last updated ascending"},{"id":"total_sold_quantity_asc","name":"Order
+        by total sold quantity ascending"},{"id":{"id":"total_sold_quantity_desc","field":"sold_quantity","missing":"_last","order":"desc"},"name":"Order
+        by total sold quantity descending"},{"id":{"id":"inventory_id_asc","field":"inventory_id","missing":"_last","order":"asc"},"name":"Order
+        by inventory id ascending"}]}'
+  recorded_at: Fri, 19 Feb 2021 01:48:48 GMT
+recorded_with: VCR 6.0.0

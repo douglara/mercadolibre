@@ -12,11 +12,13 @@ module Mercadolibre
       end
 
       def search_my_item_ids(filters={})
-        user_id = filters[:user_id] || get_my_user.id
+        user_id = filters[:user_id] || get_my_user[:ok]['id']
 
-        filters.merge!({ access_token: @access_token, limit: 50, offset: 0 })
+        filters.merge!({limit: 50, offset: 0 })
 
-        get_request("/users/#{user_id}/items/search", filters).body
+        request = get_request("/users/#{user_id}/items/search", filters)
+        response = @last_response && @last_response&.code == 200 ? {ok: @last_body} : {error: @last_body}
+        @default_parse_response == true ? request.body : response
       end
 
       def get_search_url(site_id, q)

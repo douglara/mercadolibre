@@ -27,7 +27,9 @@ module Mercadolibre
       end
 
       def get_my_user
-        get_request('/users/me', { access_token: @access_token }).body
+        request = get_request('/users/me')
+        response = @last_response && @last_response&.code == 200 ? {ok: @last_body} : {error: @last_body}
+        @default_parse_response == true ? request.body : response
       end
 
       def get_user_addresses(user_id)
